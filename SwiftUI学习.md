@@ -30,4 +30,6 @@
     @Binding A property wrapper type that can read and write a value owned by a source of truth；@Binding的作用是在保存状态的属性和更改数据的视图之间创建双向连接，将当前属性连接到存储在别处的单一数据源（single source of truth），而不是直接存储数据。将存储在别处的值语意的属性转换为引用语义，在使用时需要在变量名加$符号。
 
 22. @StateObject的声明周期与当前所在View生命周期保持一致，即当View被销毁后，StateObject的数据销毁，当View被刷新时，StateObject的数据会保持；而ObservedObject不被View持有，生命周期不一定与View一致，即数据可能被保持或者销毁；
-23. 
+23. GeometryReader，A container view that defines its content as a function of its own size and coordinate space. 可以获取到父视图建议的布局大小；GeometryReader dynamically reports size and position information about the parent view and the device, and updates whenever the size changes; for example, when the user rotates their iPhone.
+24. path.move开始绘制起点，addLine添加直线点，addQuadCurve添加贝塞尔曲线点，addLines添加一组直线点，
+
