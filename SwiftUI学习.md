@@ -13,7 +13,7 @@
 11. State is a value, or a set of values, that can change over time, and that affects a view’s behavior, content, or layout. You use a property with the @State attribute to add state to a view. 使用state来保存之后可能改变的值，进而更新页面；使用@State添加；
 12. Because you use state properties to hold information that’s specific to a view and its subviews, you always create state as private. @State变量用private修饰；
 13. To combine static and dynamic views in a list, or to combine two or more different groups of dynamic views, use the ForEach type instead of passing your collection of data to List. 列表里有动态和静态视图，或者组合多个不同的分组的动态视图，使用ForEach而不是List的构造方法；
-14. You use the $ prefix to access a binding to a state variable, or one of its properties. 试图中使用$前缀绑定state变量；
+14. You use the $ prefix to access a binding to a state variable, or one of its properties. 试图中使用$前缀绑定state变量，双向绑定；
 15. SwiftUI subscribes to your observable object, and updates any views that need refreshing when the data changes. 监听所有ObservableObject对象，当对象变化时更新试图；
 16. An observable object needs to publish any changes to its data, so that its subscribers can pick up the change. ObservableObject对象改变时需要publish变化，以使监听者知道；使用@Published关键字；
 17. The modelData property gets its value automatically, as long as the environmentObject(_:) modifier has been applied to a parent. 使用@EnvironmentObject关键字修饰的变量，会自动更新；
@@ -32,4 +32,13 @@
 22. @StateObject的声明周期与当前所在View生命周期保持一致，即当View被销毁后，StateObject的数据销毁，当View被刷新时，StateObject的数据会保持；而ObservedObject不被View持有，生命周期不一定与View一致，即数据可能被保持或者销毁；
 23. GeometryReader，A container view that defines its content as a function of its own size and coordinate space. 可以获取到父视图建议的布局大小；GeometryReader dynamically reports size and position information about the parent view and the device, and updates whenever the size changes; for example, when the user rotates their iPhone.
 24. path.move开始绘制起点，addLine添加直线点，addQuadCurve添加贝塞尔曲线点，addLines添加一组直线点，
-
+25. Swift 中可以使用 KeyPath 来获取属性值，语法为\Type.property；
+26. AnyTransition.asymmetric, Provides a composite transition that uses a different transition for insertion versus removal.  asymmetric 方法传入了两个动画，一个用于插入操作时，一个用于删除操作时。每个动画都可以进行组合；
+27. 在 SwiftUI 中，你可以将任意的改变过程封装进一个 withAnimation 块中，SwiftUI 会对这种改变采用 fade in/out 的方式进行动画。
+28. `static func move(edge: Edge) -> AnyTransition` Returns a transition that moves the view away, towards the specified edge of the view.
+29. ModelData中加载数据，程序运行中需要改变的数据，需要使用@Published标记，改变时会通知其他@StateObject监听者改变状态；不需要改变的不用@Published标记；
+30. 遵守Equatbale协议的View可以使用 animation(_:) 直接执行动画；没有遵守Equatbale协议的View可以使用 animation(_:value:) 指定value变化时执行动画；
+31. A view’s color, opacity, rotation, size, and other properties are all animatable.
+32. `.animation(nil)`关闭动画；
+33. withAnimation包裹的属性相关的view都会执行默认fade in/out动画；可以添加参数，指定动画时长和类型；
+34. .transition指定显示隐藏动画，默认Fade in/out；扩展AnyTransition类，添加自定义静态变量，实现自定义转场动画；
