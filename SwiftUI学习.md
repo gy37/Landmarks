@@ -42,3 +42,6 @@
 32. `.animation(nil)`关闭动画；
 33. withAnimation包裹的属性相关的view都会执行默认fade in/out动画；可以添加参数，指定动画时长和类型；
 34. .transition指定显示隐藏动画，默认Fade in/out；扩展AnyTransition类，添加自定义静态变量，实现自定义转场动画；
+35. Dictionary(grouping:by:) 根据数组创建字典，by后面的闭包返回key，key值相同的元素组成新的数组作为value；
+36. 使用TabView创建Tab，view.tabItem属性设置view关联的tabitem属性；
+37. 
