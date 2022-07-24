@@ -44,4 +44,7 @@
 34. .transition指定显示隐藏动画，默认Fade in/out；扩展AnyTransition类，添加自定义静态变量，实现自定义转场动画；
 35. Dictionary(grouping:by:) 根据数组创建字典，by后面的闭包返回key，key值相同的元素组成新的数组作为value；
 36. 使用TabView创建Tab，view.tabItem属性设置view关联的tabitem属性；
-37. 
+37. @Environment 就是 View 所在环境的各种环境变量信息的集合。你可以通过键路径 (key path) 对其读写。当创建应用时，会自动创建Environment。其主要作用是传递系统的一些设置。如ColorScheme、NSManagedObjectContext。通过实现EnvironmentKey协议，和扩展EnvironmentValues可以自定义环境变量，手动去注入到根视图上，并初始化注入对象为其设置一个值。
+38. @PropertyWarpper修饰的结构体/枚举/类，定义wrappedValue属性，重写set和get方法，获取或设置特定的wrappedValue属性；
+    Binding对象是一个Binding类型的变量，当只需要使用值的时候，需要访问其.warppedValue属性来访问里面包裹的值。
+39. 

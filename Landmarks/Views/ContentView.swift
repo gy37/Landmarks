@@ -13,8 +13,6 @@ struct ContentView: View {
     enum Tab {
         case featured
         case list
-        case hike
-        case badge
     }
     var body: some View {
         TabView(selection: $selection,
@@ -29,16 +27,6 @@ struct ContentView: View {
                             Label("List", systemImage: "list.bullet")
                         }
                         .tag(Tab.list)
-                    HikeView(hike: ModelData().hikes[0])
-                        .tabItem {
-                            Label("Hike", systemImage: "flame")
-                        }
-                        .tag(Tab.hike)
-                    Badge()
-                        .tabItem {
-                            Label("Badge", systemImage: "hexagon")
-                        }
-                        .tag(Tab.badge)
                 })
     }
 }
