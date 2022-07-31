@@ -47,4 +47,10 @@
 37. @Environment 就是 View 所在环境的各种环境变量信息的集合。你可以通过键路径 (key path) 对其读写。当创建应用时，会自动创建Environment。其主要作用是传递系统的一些设置。如ColorScheme、NSManagedObjectContext。通过实现EnvironmentKey协议，和扩展EnvironmentValues可以自定义环境变量，手动去注入到根视图上，并初始化注入对象为其设置一个值。
 38. @PropertyWarpper修饰的结构体/枚举/类，定义wrappedValue属性，重写set和get方法，获取或设置特定的wrappedValue属性；
     Binding对象是一个Binding类型的变量，当只需要使用值的时候，需要访问其.warppedValue属性来访问里面包裹的值。
-39. 
+39. To represent UIKit views and view controllers in SwiftUI, you create types that conform to the UIViewRepresentable and UIViewControllerRepresentable protocols. 在SwiftUI中使用UIKit里的View或者ViewController，使View遵守UIViewRepresentable协议即可；makeUIViewController创建UIViewController，updateUIViewController解释Updates the state of the specified view controller with new information from SwiftUI；
+40. A SwiftUI view that represents a UIKit view controller can define a Coordinator type that SwiftUI manages and provides as part of the representable view’s context. SwiftUI中的View可以定义一个Coordinator类型来控制UIKit的ViewController；
+41. SwiftUI manages your UIViewControllerRepresentable type’s coordinator, and provides it as part of the context when calling the methods you created above. SwiftUI管理UIViewController对应的Coordinator；
+42. SwiftUI calls this makeCoordinator() method before makeUIViewController(context:), so that you have access to the coordinator object when configuring your view controller. You can use this coordinator to implement common Cocoa patterns, such as delegates, data sources, and responding to user events via target-action. 
+43. The coordinator is a good place to store these controllers, because the system initializes them only once, and before you need them to update the view controller. 在Coordinator类中保存和UIKit交互的数据，只初始化一次；
+44.  UIViewRepresentable and UIViewControllerRepresentable types have the same life cycle, with methods that correspond to their underlying UIKit types. UIViewRepresentable类似UIViewControllerRepresentable，make方法创建UIView返回给SwiftUI，当SwiftUI变化时，在update方法中接受到最新的SwiftUI的变量，用来更新UIView；
+45. pageViewController.viewControllers返回当前显示的ViewController，不是所有的；setViewControllers设置当前显示的ViewController；
