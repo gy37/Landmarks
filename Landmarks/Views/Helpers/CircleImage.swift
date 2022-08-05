@@ -9,11 +9,12 @@ import SwiftUI
 
 struct CircleImage: View {
     var imageName: String
+    var width: CGFloat?
     
     var body: some View {
         Image(imageName)
             .resizable()
-            .frame(width: 200, height: 200)
+            .frame(width: width, height: width)
             .clipShape(Circle())
             .overlay (
                 Circle().stroke(Color.green, lineWidth: 4)
