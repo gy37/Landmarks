@@ -54,3 +54,8 @@
 43. The coordinator is a good place to store these controllers, because the system initializes them only once, and before you need them to update the view controller. 在Coordinator类中保存和UIKit交互的数据，只初始化一次；
 44.  UIViewRepresentable and UIViewControllerRepresentable types have the same life cycle, with methods that correspond to their underlying UIKit types. UIViewRepresentable类似UIViewControllerRepresentable，make方法创建UIView返回给SwiftUI，当SwiftUI变化时，在update方法中接受到最新的SwiftUI的变量，用来更新UIView；
 45. pageViewController.viewControllers返回当前显示的ViewController，不是所有的；setViewControllers设置当前显示的ViewController；
+46. @AppStorage("MapView.zoom") 绑定storage中的值到对象上；可以获取和设置值；类似UserDefaults；
+47. 通过实现FocusedValueKey协议，自定义需要绑定的Value类型；扩展FocusedValues，声明变量保存绑定的对象，重写set和get方法，也作为keypath使用，有聚焦的视图时，根据keypath调用；FocusedValues：A collection of state exported by the focused view and its ancestors. 聚焦的视图或者父视图中导出来的一组状态数据；
+
+48. @FocusedBinding：A convenience property wrapper for observing and automatically unwrapping state bindings from the focused view or one of its ancestors. 从聚焦的视图或者父视图中自动解包获取到绑定的状态； 
+49. 视图中调用focusedValue方法，Modifies this view by injecting a value that you provide for use by other views whose state depends on the focused view hierarchy. 根据keypath通知其他视图，聚焦视图状态变化；

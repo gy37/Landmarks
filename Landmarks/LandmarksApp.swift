@@ -12,12 +12,24 @@ struct LandmarksApp: App {
     @StateObject private var modelData = ModelData()
 
     var body: some Scene {
+        #if !os(watchOS)
         WindowGroup {
             ContentView()
                 .environmentObject(modelData)
         }
-        
-        #if os(watchOS)
+        .commands {
+            LandmarkCommands()
+        }
+        #if os(macOS)
+        Settings {
+            LandmarkSettings()
+        }
+        #endif
+        #else
+        WindowGroup {
+            ContentView()
+                .environmentObject(modelData)
+        }
         WKNotificationScene(controller: NotificationController.self, category: "LandmarkNear")
         #endif
     }

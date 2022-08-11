@@ -10,21 +10,29 @@ import MapKit
 
 struct MapView: View {
     var coordinate: CLLocationCoordinate2D
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 31.23, longitude: 121.47),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     
-    var body: some View {
-        Map(coordinateRegion: $region)
-            .onAppear(perform: {
-                setRegion(coordinate)
-            })
+    @AppStorage("MapView.zoom")
+    private var zoom: LandmarkSettings.Zoom = .medium
+    
+    var delta: CLLocationDegrees {
+        switch zoom {
+        case .near:
+            return 0.02
+        case .medium:
+            return 0.2
+        case .far:
+            return 2
+        }
     }
     
-    private func setRegion(_ coordinate: CLLocationCoordinate2D) {
-        region = MKCoordinateRegion(
+    var body: some View {
+        Map(coordinateRegion: .constant(region))
+    }
+    
+    var region: MKCoordinateRegion {
+        MKCoordinateRegion(
             center: coordinate,
-            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+            span: MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta))
     }
 }
 
