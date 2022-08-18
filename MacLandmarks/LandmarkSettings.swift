@@ -8,23 +8,14 @@
 import SwiftUI
 
 struct LandmarkSettings: View {
-    enum Zoom: String, CaseIterable, Identifiable {
-        case near = "Near"
-        case medium = "Medium"
-        case far = "Far"
-        
-        var id: Zoom {
-            return self
-        }
-    }
     
     @AppStorage("MapView.zoom")
-    private var zoom: Zoom = .medium
+    private var zoom: MapView.Zoom = .medium
     
     var body: some View {
         Form {
             Picker("Map Zoom:", selection: $zoom) {
-                ForEach(Zoom.allCases) { level in
+                ForEach(MapView.Zoom.allCases) { level in
                     Text(level.rawValue)
                 }
             }

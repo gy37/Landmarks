@@ -12,7 +12,17 @@ struct MapView: View {
     var coordinate: CLLocationCoordinate2D
     
     @AppStorage("MapView.zoom")
-    private var zoom: LandmarkSettings.Zoom = .medium
+    private var zoom: Zoom = .medium
+    
+    enum Zoom: String, CaseIterable, Identifiable {
+        case near = "Near"
+        case medium = "Medium"
+        case far = "Far"
+        
+        var id: Zoom {
+            return self
+        }
+    }
     
     var delta: CLLocationDegrees {
         switch zoom {
